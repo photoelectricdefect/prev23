@@ -1,0 +1,48 @@
+fun putChar(c:int):void;
+
+var i:int, max:int;
+
+fun printNum(num:int):void = {
+
+    if num == 0 then {
+        none
+    } else {
+        printNum(num / 10);
+        putChar(('0':int) + num % 10)
+    }
+};
+
+fun main():void = {
+
+    i = 1;
+    max = 100;
+
+    while (i < max) do {
+
+        printNum(i);
+        putChar((':':int));
+        putChar((' ':int));
+
+        if i % 3 == 0 then{
+            putChar(('F':int));
+            putChar(('i':int));
+            putChar(('z':int));
+            putChar(('z':int))
+        };
+
+
+        if i % 5 == 0 then {
+            putChar(('B':int));
+            putChar(('u':int));
+            putChar(('z':int));
+            putChar(('z':int))
+        };
+
+       putChar(10); # Newline
+
+       i = i + 1
+    };
+
+    none        # Make interpreter happy
+
+};
