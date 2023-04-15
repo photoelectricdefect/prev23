@@ -561,12 +561,8 @@ public class CodeGenerator extends AstFullVisitor<Object, Object> {
 		
 		try {
 			ImcMEM imcMEM=(ImcMEM)ImcGen.exprImc.get(assignStmt.dst);
-			ImcExpr imcExpr=ImcGen.exprImc.get(assignStmt.src);
-			
-			//TODO:which is correct
+			ImcExpr imcExpr=ImcGen.exprImc.get(assignStmt.src);			
 			ImcMOVE imcMOVE=new ImcMOVE(imcMEM,imcExpr);
-			// ImcMOVE ImcMOVE=new ImcMOVE(imcMEM.addr,imcExpr);
-			
 			ImcGen.stmtImc.put(assignStmt,imcMOVE);
 		}
 		catch(Exception ex) {
@@ -666,7 +662,6 @@ public class CodeGenerator extends AstFullVisitor<Object, Object> {
 		
 		try {
 			Vector<ImcStmt> vectorImcStmts=new Vector<ImcStmt>();
-			// int lim=stmts.stmts.size()-1;
 
 			for(int i=0;i<stmts.stmts.size();i++) {
 				AstStmt astStmt=stmts.stmts.get(i);
@@ -674,59 +669,7 @@ public class CodeGenerator extends AstFullVisitor<Object, Object> {
 				vectorImcStmts.add(imcStmt);
 			}
 
-			// AstStmt astStmtFinal=stmts.stmts.get(stmts.stmts.size()-1);
-			// ImcStmt imcStmtFinal=ImcGen.stmtImc.get(astStmtFinal);
-			// ImcESTMT imcESTMT=null;
-
-			// ImcExpr imcExpr=null;
-
-			// if(imcStmtFinal instanceof ImcESTMT) {
-				// imcESTMT=(ImcESTMT)imcStmtFinal;
-				// vectorImcStmts.add(imcStmtFinal);
-
-				
-				// ImcESTMT imcESTMT=(ImcESTMT)imcStmtFinal;
-				// imcExpr=imcESTMT.expr;
-			// }
-			// if(imcStmtFinal instanceof ImcSTMTS) {
-			// 	ImcSTMTS imcSTMTSFinal=(ImcSTMTS)imcStmtFinal;
-			// 	ImcStmt imcStmtFinal0=imcSTMTSFinal.stmts.get(imcSTMTSFinal.stmts.size()-1);
-
-			// 	if(!(imcStmtFinal0 instanceof ImcESTMT)) {
-			// 		vectorImcStmts.add(imcStmtFinal0);
-			// 		vectorImcStmts.add(new ImcESTMT(new ImcCONST(0)));
-			// 	}
-
-
-				// if(imcStmtFinal instanceof ImcSTMTS) {
-				// 	ImcSTMTS imcSTMTSFinal=(ImcSTMTS)imcStmtFinal;
-				// 	ImcStmt imcStmtFinal0=imcSTMTSFinal.stmts.get(imcSTMTSFinal.stmts.size()-1);
-
-				// 	if(!(imcStmtFinal0 instanceof ImcESTMT)) {
-				// 		vectorImcStmts.add(imcStmtFinal0);
-				// 		vectorImcStmts.add(new ImcESTMT(new ImcCONST(0)));
-				// 	}
-				// }
-				// else {
-				// 	vectorImcStmts.add(imcStmtFinal);
-				// 	vectorImcStmts.add(new ImcESTMT(new ImcCONST(0)));
-
-				// 	// imcESTMT=new ImcESTMT(new ImcCONST(0));
-				// }
-
-				// imcExpr=new ImcCONST(0);
-			// }
-			// else if(!(imcStmtFinal instanceof ImcESTMT)) {
-			// 	vectorImcStmts.add(new ImcESTMT(new ImcCONST(0)));
-			// }
-
-			// vectorImcStmts.add(imcESTMT);
 			ImcSTMTS imcSTMTS=new ImcSTMTS(vectorImcStmts);
-		
-			// ImcSEXPR imcSEXPR=new ImcSEXPR(imcSTMTS,imcExpr);
-			// ImcESTMT imcESTMT=new ImcESTMT(imcSEXPR);
-			// ImcGen.stmtImc.put(stmts,imcESTMT);
-
 			ImcGen.stmtImc.put(stmts,imcSTMTS);
 		}
 		catch(Exception ex) {

@@ -50,12 +50,6 @@ public class ExprCanonizer implements ImcVisitor<ImcExpr, Vector<ImcStmt>> {
 				imcExprArgs.add(imcTEMP);
 			}
 
-			// ImcTEMP imcTEMP=new ImcTEMP(new MemLabel());
-			// ImcMOVE imcMOVE=new ImcMOVE(imcTEMP,new ImcCALL(call.label,call.offs,imcExprArgs));
-			// visArg.add(imcMOVE);
-
-			// return imcTEMP;
-
 			return new ImcCALL(call.label,call.offs,imcExprArgs);
 		}
 		catch(Exception ex) {
@@ -83,31 +77,12 @@ public class ExprCanonizer implements ImcVisitor<ImcExpr, Vector<ImcStmt>> {
 
 	public ImcExpr visit(ImcMEM mem, Vector<ImcStmt> visArg) {
         try {
-		// ImcTEMP temp = new ImcTEMP(new MemTemp());
-		// visArg.add(new ImcMOVE(temp, new ImcMEM(mem.addr.accept(this, stmts))));
-
-		// Report.info(TAG + "(mem): " + memTemp + "=" + mem.addr);
-
-		// return temp;
-
 			return new ImcMEM(mem.addr.accept(this,visArg));
         }
 		catch(Exception ex) {
 			throw new Report.Error(getStackTrace(ex));
 		}
 	}
-
-	//Not used in my implementation (i think)
-	// public ImcExpr visit(ImcSEXPR sExpr, Vector<ImcStmt> visArg) {
-    //     try {
-	// 		return sExpr;
-    //     }
-	// 	catch(Exception ex) {
-	// 		throw new Report.Error(getStackTrace(ex));
-	// 	}
-
-    //     // return null;
-	// }
 
 	public ImcExpr visit(ImcTEMP temp, Vector<ImcStmt> visArg) {
         try {

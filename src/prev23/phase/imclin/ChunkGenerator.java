@@ -85,7 +85,6 @@ public class ChunkGenerator extends AstFullVisitor<Object, Object> {
 			}
 
             LinCodeChunk linCodeChunk=new LinCodeChunk(memFrame, imcStmtsLinearized, memLabelEntry, memLabelExit);
-            // LinCodeChunk linCodeChunk=new LinCodeChunk(memFrame, imcStmts, memLabelEntry, memLabelExit);
             ImcLin.addCodeChunk(linCodeChunk);
 		}
 		catch(Exception ex) {
